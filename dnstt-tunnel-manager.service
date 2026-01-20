@@ -1,0 +1,24 @@
+[Unit]
+Description=DNSTT Tunnel Manager - Manages multiple DNSTT tunnels and SSH sessions
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/dnstt
+ExecStart=/usr/bin/python3 /opt/dnstt/main.py /opt/dnstt/config.yaml
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,39 @@
+dnstt:
+  path: "/usr/local/bin/dnstt-client"
+  remote_ip: "1.2.3.4"
+  port: 53
+  domain: "example.com"
+  pubkey: ""
+
+ssh:
+  user: "tunnel"
+  key_path: "~/.ssh/dnstt_key"
+  server: "127.0.0.1"
+  port: 1080
+
+tunnels:
+  dnstt_count: 3  # Number of DNSTT tunnels to create
+  ssh_per_dnstt: 10  # Number of SSH sessions per DNSTT tunnel
+  dnstt_start_port: 1080  # Starting port for DNSTT tunnels (1080, 1081, 1082, ...)
+  socks_start_port: 9090  # Starting SOCKS5 port for SSH sessions (9090, 9100, 9110, ... per tunnel)
+  socks_ports_per_tunnel: 100  # Port range size per DNSTT tunnel (e.g., tunnel 1: 9090-9099, tunnel 2: 9100-9109)
+
+xui:
+  api_url: "http://127.0.0.1:2053"
+  username: "admin"
+  password: ""
+
+health_check:
+  interval: 60  # seconds
+  timeout: 5    # seconds
+  retry_count: 3
+
+restart:
+  max_retries: 5
+  backoff_seconds: 10
+
+logging:
+  level: "INFO"
+  file: "logs/tunnel_manager.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
