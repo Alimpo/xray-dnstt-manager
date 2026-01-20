@@ -262,3 +262,4 @@ Result:
 ## Support
 
 [Your Support Information Here]
+# xray-dnstt-manager
